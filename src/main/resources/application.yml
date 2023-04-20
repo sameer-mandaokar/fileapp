@@ -1,0 +1,9 @@
+micronaut:
+  application:
+    name: rfs
+  server:
+    port: 80
+netty:
+  default:
+    allocator:
+      max-order: 3

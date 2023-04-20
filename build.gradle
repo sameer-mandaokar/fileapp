@@ -1,0 +1,47 @@
+plugins {
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("io.micronaut.application") version "3.6.3"
+//    id("com.microsoft.azure.azurewebapp") version "1.2.0"
+}
+
+//version = "0.1"
+group = "app"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor("io.micronaut:micronaut-http-validation")
+    annotationProcessor("io.micronaut:micronaut-inject-java:$micronautVersion")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-jackson-databind")
+    implementation("jakarta.annotation:jakarta.annotation-api")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    implementation("io.micronaut:micronaut-validation")
+//    implementation("io.micronaut.servlet:micronaut-servlet-engine:3.3.5")
+//    developmentOnly("io.micronaut.servlet:micronaut-http-server-jetty:3.3.5")
+
+}
+
+
+application {
+    mainClass.set("rfs.Application")
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("11")
+    targetCompatibility = JavaVersion.toVersion("11")
+}
+
+graalvmNative.toolchainDetection = false
+micronaut {
+    runtime("netty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("rfs.*")
+    }
+}
+
+
+
