@@ -22,7 +22,7 @@ public class ExceptionScheduler {
         throw new NullPointerException();
     }
 
-    @Scheduled(cron="20 * * * *")
+    @Scheduled(cron="2 * * * *")
     void scheduleHttpException500() {
         String exceptionMessage = "Throwing INTERNAL_SERVER_ERROR : "+ new SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(new Date());
         LOG.error(exceptionMessage);
